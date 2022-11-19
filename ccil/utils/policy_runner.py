@@ -20,8 +20,8 @@ class PolicyRunner:
             action = self.agent(x).item()
 
             prev_action, prev_state = action, state
-            print("\n !!! test output", self.env.step(action))
-            state, rew, done, info = self.env.step(action)
+            # print("\n !!! test output", self.env.step(action))
+            state, rew, done, info = self.env.step(action)[:4]
 
             trajectory = Trajectory.add_step(
                 trajectory, prev_state, prev_action, rew, None, info=info
