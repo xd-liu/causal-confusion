@@ -20,6 +20,7 @@ class PolicyRunner:
             action = self.agent(x).item()
 
             prev_action, prev_state = action, state
+            print("\n !!! test output", self.env.step(action))
             state, rew, done, info = self.env.step(action)
 
             trajectory = Trajectory.add_step(
