@@ -15,7 +15,7 @@ class MCRichDenseEnv(Wrapper):
     def reset(self):
         self.env.state = np.array([
             self.np_random.uniform(low=-1, high=0.5),
-            self.unwrapped.np_random.randn() * 0.07,
+            self.unwrapped.np_random.standard_normal() * 0.07,
         ])
         return np.array(self.env.state)
 
@@ -36,7 +36,7 @@ class MCRichEnv(Wrapper):
     def reset(self):
         self.env.state = np.array([
             self.np_random.uniform(low=-1, high=0.5),
-            self.unwrapped.np_random.randn() * 0.07,
+            self.unwrapped.np_random.standard_normal() * 0.07,
             ])
         return np.array(self.env.state)
 
