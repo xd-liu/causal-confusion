@@ -82,6 +82,8 @@ class MountainCarStateEncoder:
             prev_action = trajectory.actions[-1]
         else:
             prev_action = np.atleast_1d(np.random.randint(0, 3))
+        
+        print("\n State encoder:", state, prev_action)
         x = np.concatenate([state, prev_action])
         return x
 
