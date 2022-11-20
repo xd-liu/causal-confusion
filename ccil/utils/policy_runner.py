@@ -16,7 +16,12 @@ class PolicyRunner:
         state, done = self.env.reset(), False
         state = state[0]
         trajectory = None
+         
+        max_step = 1000
+        step_idx = 0
+
         while not done:
+            step_idx += 1
             x = self.state_encoder.step(state, trajectory)
             # print("\n TEST", x)
             x = x.astype(float)
@@ -29,6 +34,11 @@ class PolicyRunner:
             trajectory = Trajectory.add_step(
                 trajectory, prev_state, prev_action, rew, None, info=info
             )
+            if step_idx > max_step:
+                print('-' * 100)
+                print("MAX STEP EXCEED AT 1000")
+                break
+
         trajectory.finished()
         return trajectory
 
@@ -50,6 +60,8 @@ class PolicyRunner:
     def run_num_episodes(self, num_episodes, verbose=False):
         trajectories = []
         for _ in tqdm(range(num_episodes), disable=not verbose):
+            print("-" * 100)
+            print("Test ,new run ")
             trajectory = self.run_episode()
             trajectories.append(trajectory)
         return trajectories
