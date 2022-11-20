@@ -81,6 +81,7 @@ def intervention_policy_execution(args):
         policy_paths = policy_save_dir.glob('confounded_uniform*.pkl')
         if not policy_paths:
             raise RuntimeError("No policy found")
+        print("\n TEST PATH", policy_paths, "\n")
         policy_path = next(iter(sorted(policy_paths, reverse=True)))
     policy_model = torch.load(policy_path)
     print(f"Loaded policy from {policy_path}")
