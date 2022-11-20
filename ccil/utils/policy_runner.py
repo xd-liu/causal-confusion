@@ -17,6 +17,7 @@ class PolicyRunner:
         trajectory = None
         while not done:
             x = self.state_encoder.step(state, trajectory)
+            x = x.astype(float)
             action = self.agent(x).item()
 
             prev_action, prev_state = action, state
